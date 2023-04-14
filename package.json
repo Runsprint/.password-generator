@@ -1,0 +1,24 @@
+{
+  "name": "password-generator",
+  "version": "1.0.0",
+  "description": "![Design preview for the Password generator app coding challenge](./preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Runsprint/.password-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Runsprint/.password-generator/issues"
+  },
+  "homepage": "https://github.com/Runsprint/.password-generator#readme",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
