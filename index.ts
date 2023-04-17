@@ -1,4 +1,4 @@
-let password = document.getElementById("password")as HTMLInputElement; //textcontent
+const password = document.getElementById("password")as HTMLInputElement; //textcontent
 let copied = document.getElementById("copied")as HTMLInputElement; //none
 let icon = document.getElementById("icon")as HTMLInputElement;
 let ten = document.getElementById("ten")as HTMLSpanElement;
@@ -11,8 +11,8 @@ let color_div = document.getElementById("color_div")as HTMLInputElement;//array 
 let button = document.getElementById("butt")as HTMLInputElement;
 let medium = document.getElementById("medium")as HTMLInputElement;//textcontent
 let input_up = document.getElementById("input_up")as HTMLInputElement;
-
 let slidervalue: number = 10;
+
 function change( event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const thumbPosition: number = (parseInt(inputElement.value) - parseInt(inputElement.min)) / (parseInt(inputElement.max) - parseInt(inputElement.min)) * 100;
@@ -22,32 +22,44 @@ function change( event: Event) {
     ten.textContent = slidervalue.toString();
   };
   rangeInput.addEventListener("input", change);
-
-  button.addEventListener("click", ()=>{debugger  
+  button.addEventListener("click", ()=>{ 
     const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');//length4
-    
-  checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener('click', () => {
-      // input_up.style.display= "flex"
-      let result = '';
-      switch (checkbox.id) {
-        case 'uppercase':
-          result = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  
-          break;
-        case 'lowercase':
-          result = 'abcdefghijklmnopqrstuvwxyz';
-          break;
-        case 'numbers':
-          result = '0123456789';
-          break;
-        case 'symbols':
-          result = ' ! " #, $, %, &, , *, +, ,, - . /.';
-        default:
-          console.log('Invalid checkbox');
-          return;
+    let result = '';
+    let score = 0;
+      if(uppercase.checked){
+        result += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        score += 2;
+      };
+      if(lowercase.checked){
+        result += "abcdefghijklmnopqrstuvwxyz"
+        score += 4;
       }
+      if(numbers.checked){
+        result += "0123456789";
+        score += 6;
+      }
+      if(synbols.checked){
+        result += "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+        score += 8;
+      }
+      score = Math.ceil(score /5);
+      
+      console.log(score);
+      debugger
+      if(score === 1 ){
+        console.log("hello")
+      }
+      const myString = ten.textContent;
+      const myNumber = Number(myString);
+      let output: string = "";
+      console.log(myNumber);
+      for (let i = 0; i < myNumber; i++){
+        const caracters =  getRandomCharacter(result);
+        output += caracters //concatenation
+      }
+      function getRandomCharacter(str: string): string {
+          const randomIndex = Math.floor(Math.random() * result.length);
+          return str.charAt(randomIndex);
+        } 
     });
-});
-
-})
+ 

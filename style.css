@@ -1,3 +1,6 @@
+/* :root{
+    --red:#ffffff its variable in css
+} */
 body{
     font-family: 'JetBrains Mono', monospace;
     background-color: black;
@@ -103,10 +106,7 @@ input{
     color: #E6E5EA;
     letter-spacing: 0.2px;
 }
-.check{
-    margin-right: 10px;
-    border: 1px;
-}
+
 .colors{
     background: black;
     color: #817D92;
@@ -137,17 +137,22 @@ input{
     margin-bottom: 16px;
     position: relative;
 }
- /* display none */
+.check{
+    margin-right: 10px;
+    opacity: 0;
+    z-index: 1;
+}
 .input_up{
     position: absolute;
     width: 20px;
     height: 20px;
     left: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #A4FFAF;
-    display: none;
+    background:#24232C;
+    border:2px solid#E6E5EA ;
+}
+input[type="checkbox"]:checked + .input_up{
+    background: red;
+    
 }
 .butt{
     width: 325px;

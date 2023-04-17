@@ -1,5 +1,5 @@
 "use strict";
-let password = document.getElementById("password"); //textcontent
+const password = document.getElementById("password"); //textcontent
 let copied = document.getElementById("copied"); //none
 let icon = document.getElementById("icon");
 let ten = document.getElementById("ten");
@@ -24,28 +24,42 @@ function change(event) {
 ;
 rangeInput.addEventListener("input", change);
 button.addEventListener("click", () => {
-    debugger;
     const checkboxes = document.querySelectorAll('input[type="checkbox"]'); //length4
-    checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('click', () => {
-            // input_up.style.display= "flex"
-            let result = '';
-            switch (checkbox.id) {
-                case 'uppercase':
-                    result = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                    break;
-                case 'lowercase':
-                    result = 'abcdefghijklmnopqrstuvwxyz';
-                    break;
-                case 'numbers':
-                    result = '0123456789';
-                    break;
-                case 'symbols':
-                    result = ' ! " #, $, %, &, , *, +, ,, - . /.';
-                default:
-                    console.log('Invalid checkbox');
-                    return;
-            }
-        });
-    });
+    let result = '';
+    let score = 0;
+    if (uppercase.checked) {
+        result += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        score += 2;
+    }
+    ;
+    if (lowercase.checked) {
+        result += "abcdefghijklmnopqrstuvwxyz";
+        score += 4;
+    }
+    if (numbers.checked) {
+        result += "0123456789";
+        score += 6;
+    }
+    if (synbols.checked) {
+        result += "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+        score += 8;
+    }
+    score = Math.ceil(score / 5);
+    console.log(score);
+    debugger;
+    if (score === 1) {
+        console.log("hello");
+    }
+    const myString = ten.textContent;
+    const myNumber = Number(myString);
+    let output = "";
+    console.log(myNumber);
+    for (let i = 0; i < myNumber; i++) {
+        const caracters = getRandomCharacter(result);
+        output += caracters; //concatenation
+    }
+    function getRandomCharacter(str) {
+        const randomIndex = Math.floor(Math.random() * result.length);
+        return str.charAt(randomIndex);
+    }
 });
