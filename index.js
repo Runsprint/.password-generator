@@ -1,5 +1,5 @@
 "use strict";
-const password = document.getElementById("password");
+let password = document.getElementById("password");
 let copied = document.getElementById("copied");
 let icon = document.getElementById("icon");
 let ten = document.getElementById("ten");
@@ -98,13 +98,27 @@ button.addEventListener("click", () => {
         copied.style.display = "none";
     }
 });
-function copy(item) {
-    return JSON.parse(JSON.stringify(item));
-}
 icon.addEventListener("click", () => {
-    copied.style.display = "flex";
-    const copyPassword = copy(password.textContent);
-    setTimeout(() => {
+    if (password) { //for textcontent. without it Icant connect textcontent
+        let newPassword = password.textContent;
+        if (newPassword) {
+            navigator.clipboard.writeText(newPassword) // major code how to copy
+                .then(() => {
+                alert(newPassword);
+                copied.style.display = "flex";
+            })
+                .catch((error) => {
+                console.error(error);
+                copied.style.display = "none";
+            });
+        }
+        else {
+            console.error("Element has no text content");
+            copied.style.display = "none";
+        }
+    }
+    else {
+        console.error("Element not found");
         copied.style.display = "none";
-    }, 3000);
+    }
 });

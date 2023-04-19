@@ -1,4 +1,4 @@
-const password = document.getElementById("password")as HTMLInputElement;
+let password = document.getElementById("password")as HTMLInputElement;
 let copied = document.getElementById("copied")as HTMLInputElement; 
 let icon = document.getElementById("icon")as HTMLInputElement;
 let ten = document.getElementById("ten")as HTMLSpanElement;
@@ -59,7 +59,6 @@ function change( event: Event) {
           return str.charAt(randomIndex);
         } 
       password.textContent = output;
-
       score = Math.ceil(score /5);
       if(score === 1 ){
         color_div1.style.background= "#F64A4A"
@@ -100,13 +99,35 @@ function change( event: Event) {
       
     });
 
-    function copy<T>(item: T): T {
-        return JSON.parse(JSON.stringify(item));
-      } 
-    icon.addEventListener("click",()=> {
-      copied.style.display= "flex";
-      const copyPassword = copy(password.textContent)
-      setTimeout(() => {
-        copied.style.display = "none";
-      }, 3000); 
-    });
+    icon.addEventListener("click", ()=>{
+      if(password){ //for textcontent. without it Icant connect textcontent
+        let newPassword = password.textContent
+        if(newPassword){
+          navigator.clipboard.writeText(newPassword) // major code how to copy
+          .then(() => {
+            alert(newPassword);
+            copied.style.display= "flex"; 
+          })
+          .catch((error) => {
+            console.error(error);
+            copied.style.display= "none";
+          });
+          
+        }else {
+          console.error("Element has no text content");
+          copied.style.display= "none";
+        }
+      } else {
+        console.error("Element not found");
+        copied.style.display= "none";
+      }
+      
+    })
+    
+
+
+
+
+
+
+

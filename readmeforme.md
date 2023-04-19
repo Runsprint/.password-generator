@@ -27,7 +27,7 @@ In designe :
       } 
       and used setTimeout function too when I wand display nnone or flex "copied" 
       
-
+              I changed copy function and used "alert" acced of console.log.
 
       :root{
     --red:#ffffff its variable in css
